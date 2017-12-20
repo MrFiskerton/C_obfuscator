@@ -9,32 +9,49 @@ static void write(String x) {System.out.print(x);}
 
 static void debug(String x) {System.err.print(x);}
 
+static String last_result = "";
+
 static String generateIdentifier() {
     StringBuilder result = new StringBuilder();
     Random r = new Random();
-    final String alphabet = "OlI01";
+
+    final String alphabet = "OI10";
+
+    if (!last_result.isEmpty()) {
+        if (last_result.contains("0")) {
+            last_result = last_result.replace('0', 'O');
+            return last_result;
+        } else if (last_result.contains("1")) {
+            last_result = last_result.replace('1', 'I');
+            return last_result;
+        }
+        last_result = "";
+    }
 
     int min_length = 5;
     result.append(alphabet.charAt(r.nextInt(alphabet.length() - 2)));
     for (int i = 1; i < r.nextInt(13) + min_length; i++) {
         result.append(alphabet.charAt(r.nextInt(alphabet.length())));
     }
-    return result.toString();
+    last_result = result.toString();
+
+    return last_result;
 }
 
 static void declareIdentifier(String identifier) {
-      String new_identifier;
+    String new_identifier;
 
-//    debug("Declare:" + identifier + "\n");
-//    identifierMap.put(identifier, identifier + "NEW");
-//    return;
+    //    debug("Declare:" + identifier + "\n");
+    //    identifierMap.put(identifier, identifier + "NEW");
+    //    return;
 
     do {
         new_identifier = generateIdentifier();
         //debug(new_identifier);
-    } while (identifierMap.containsValue(new_identifier) && new_identifier != "");
+    } while (identifierMap.containsValue(new_identifier));
     identifierMap.put(identifier, new_identifier);
 }
+
 
 static String obfuscate(String identifier) {
     if(!identifierMap.containsKey(identifier)) {
