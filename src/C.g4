@@ -84,6 +84,14 @@ conditionStatement[int amount]
     :   'if' '('{write("if (");} expression ')'{write(")\n");tabs(amount);} compoundStatement[amount]  ('else'{write("\n");tabs(amount);write("else\n");tabs(amount);} compoundStatement[amount])?
     ;
 
+forStatement[int amount]
+    :   'for' '('{write("for (");} (type simple_declaration)? ';'{write(";");} (expression)?';'{write(";");} (expression)?')'{write(")\n");tabs(amount);}forBody[amount]
+    ;
+
+forBody[int amount]
+    : '{'{write("{\n");} items[amount + 4]? '}'{tabs(amount);write("}");}
+    ;
+
 expressionStatement[int amount]
     :   expression? ';'{write(";");}
     ;
@@ -111,13 +119,14 @@ multi_declaration
     ;
 
 simple_declaration
-    :   i=Identifier{declareIdentifier($i.text); write(" " + obfuscate($i.text)); } ('='{write("= ");} assignExpression)?
+    :   i=Identifier{declareIdentifier($i.text); write(" " + obfuscate($i.text)); } ('='{write(" = ");} assignExpression)?
     ;
 
 statement[int amount]
     :   compoundStatement[amount]
     |   expressionStatement[amount]
     |   conditionStatement[amount]
+    |   forStatement[amount]
     ;
 
 expression

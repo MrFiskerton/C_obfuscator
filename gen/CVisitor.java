@@ -43,6 +43,18 @@ public interface CVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConditionStatement(CParser.ConditionStatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link CParser#forStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForStatement(CParser.ForStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CParser#forBody}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForBody(CParser.ForBodyContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link CParser#expressionStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

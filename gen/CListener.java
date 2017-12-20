@@ -60,6 +60,26 @@ public interface CListener extends ParseTreeListener {
 	 */
 	void exitConditionStatement(CParser.ConditionStatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link CParser#forStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterForStatement(CParser.ForStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#forStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitForStatement(CParser.ForStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#forBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterForBody(CParser.ForBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#forBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitForBody(CParser.ForBodyContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link CParser#expressionStatement}.
 	 * @param ctx the parse tree
 	 */

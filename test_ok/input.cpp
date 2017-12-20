@@ -14,17 +14,4 @@ int main () {
         z = c;
     }
 
-    int k;
-    for (int i = 1; i < 2; i = i + 3) {
-        k = k + 1;
-    }
-
-    for(;;){}
-
-    for(int zz;;){}
-
-    for(;a<5;){}
-
-    for(;; a = a -2){}
-
 }
